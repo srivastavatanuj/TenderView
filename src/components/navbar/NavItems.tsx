@@ -18,7 +18,8 @@ const NavItems = () => {
         {menuItems.map((item) => {
           return (
             <span
-              className="lg:ml-6 ml-3"
+              key={item.name}
+              className="lg:ml-6 ml-3 text-sm xl:text-lg"
               onClick={() => router.push(item.page)}
             >
               {item.name}
@@ -28,12 +29,15 @@ const NavItems = () => {
       </div>
       <div>
         <span
-          className="lg:ml-6 ml-3"
+          className="lg:ml-6 ml-3 text-sm xl:text-lg"
           onClick={() => router.push("/contact-us")}
         >
           Contact Us
         </span>
-        <span className="lg:ml-6 ml-3" onClick={() => router.push("/auth")}>
+        <span
+          className="lg:ml-6 ml-3 text-sm xl:text-lg"
+          onClick={() => router.push("/auth")}
+        >
           Sign in
         </span>
       </div>
