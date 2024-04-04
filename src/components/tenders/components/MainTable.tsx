@@ -25,15 +25,13 @@ const MainTable = ({ data }: any) => {
         return false;
       }
     });
-
+    setPage(0);
     setAfterSearchData(searchData);
   };
 
   const handlePageClick = (e: any) => {
     setPage(e.selected);
   };
-
-  console.log(afterSearchData);
 
   return (
     <>

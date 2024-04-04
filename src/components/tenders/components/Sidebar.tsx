@@ -5,15 +5,24 @@ import Select from "react-select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import options from "../optionData";
+import { useState } from "react";
 
-const filterOptions = [
-  { name: "State", options: options.state },
-  { name: "District", options: options.district },
+const workOptions = [
   { name: "Category", options: options.category },
   { name: "Department", options: options.department },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ data, setFilteredData }: any) => {
+  const [location, setLocation] = useState({ State: "", District: "" });
+
+  const locationOptions: { name: string; options: any }[] = [
+    { name: "State", options: options.state },
+    {
+      name: "District",
+      options: (options.district[0] as any)[location["State"]],
+    },
+  ];
+
   return (
     <div className="min-w-[250px] fixed ">
       <h3 className="text-xl xl:text-3xl font-medium font-sans py-3 px-4 xl:p-4  text-white">
@@ -21,18 +30,33 @@ const Sidebar = () => {
       </h3>
 
       <div className="px-4 py-1 xl:py-4">
-        {filterOptions.map((filter) => {
+        {locationOptions.map((filter) => {
           return (
-            <div className="py-2 xl:py-4" key={filter.name}>
+            <div className="py-2 xl:py-4 w-[218px]" key={filter.name}>
               <p className="xl:text-lg text-sm font-semibold font-mono text-white">
                 {filter.name}
               </p>
-              <AsyncSelect
-                isMulti
-                cacheOptions
-                defaultOptions
-                minMenuHeight={100}
+              <Select
+                name={filter.name}
+                options={filter.options}
+                onChange={(e: any) => {
+                  setLocation((prev) => ({
+                    ...prev,
+                    State: e.value,
+                  }));
+                }}
               />
+            </div>
+          );
+        })}
+
+        {workOptions.map((filter) => {
+          return (
+            <div className="py-2 xl:py-4 w-[218px]" key={filter.name}>
+              <p className="xl:text-lg text-sm font-semibold font-mono text-white">
+                {filter.name}
+              </p>
+              <Select name={filter.name} options={filter.options} />
             </div>
           );
         })}
