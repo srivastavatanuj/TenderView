@@ -13,63 +13,65 @@ const Auth = () => {
   const [registerAccount, setRegisterAccount] = useState(false);
   return (
     <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-        <div className="flex flex-col items-center text-center space-y-2">
-          <Image
-            src={"/Main-Logo.png"}
-            alt="TenderView"
-            height={0}
-            width={200}
-          />
+      <div className="rounded-xl bg-white w-[450px] pb-12">
+        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+          <div className="flex flex-col items-center text-center space-y-2">
+            <Image
+              src={"/Main-Logo.png"}
+              alt="TenderView"
+              height={0}
+              width={200}
+            />
 
-          <h1 className="font-bold text-2xl">
-            {registerAccount ? "Create an account" : "Login to your account"}
-          </h1>
-          <div
-            className="inline-flex items-center gap-2 text-blue-700 hover:underline cursor-pointer font-medium text-sm"
-            onClick={() => {
-              setRegisterAccount(!registerAccount);
-            }}
-          >
-            {registerAccount
-              ? "Don't have a account? Sign-up"
-              : "Already have an account? Sign-in"}
-            <ArrowRight className="h-4 w-4" />
+            <h1 className="font-bold text-2xl">
+              {registerAccount ? "Create an account" : "Login to your account"}
+            </h1>
+            <div
+              className="inline-flex items-center gap-2 text-[#208494] hover:underline cursor-pointer font-medium text-sm"
+              onClick={() => {
+                setRegisterAccount(!registerAccount);
+              }}
+            >
+              {registerAccount
+                ? "Don't have a account? Sign-up"
+                : "Already have an account? Sign-in"}
+              <ArrowRight className="h-4 w-4" />
+            </div>
           </div>
-        </div>
 
-        <div>
-          <form action="">
-            <div className="grid gap-2">
-              {registerAccount && (
+          <div>
+            <form action="">
+              <div className="grid gap-2">
+                {registerAccount && (
+                  <div className="grid gap-1 py-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input placeholder="Full Name" />
+                  </div>
+                )}
+
                 <div className="grid gap-1 py-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input placeholder="Full Name" />
+                  <Label htmlFor="email">Email</Label>
+                  <Input placeholder="you@example.com" type="email" />
                 </div>
-              )}
 
-              <div className="grid gap-1 py-2">
-                <Label htmlFor="email">Email</Label>
-                <Input placeholder="you@example.com" type="email" />
-              </div>
+                {registerAccount && (
+                  <div className="grid gap-1 py-2">
+                    <Label htmlFor="password">Password</Label>
+                    <Input placeholder="********" type="password" />
+                  </div>
+                )}
 
-              {registerAccount && (
                 <div className="grid gap-1 py-2">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="cnfpassword">Confirm Password</Label>
                   <Input placeholder="********" type="password" />
                 </div>
-              )}
 
-              <div className="grid gap-1 py-2">
-                <Label htmlFor="cnfpassword">Confirm Password</Label>
-                <Input placeholder="********" type="password" />
+                <Button className="bg-[#3ca0af]">
+                  {registerAccount ? "Sign up" : "Sign in"}
+                </Button>
               </div>
-
-              <Button className="bg-blue-600">
-                {registerAccount ? "Sign up" : "Sign in"}
-              </Button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>

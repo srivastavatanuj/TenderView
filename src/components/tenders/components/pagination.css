@@ -1,0 +1,30 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.active {
+  background-color: #3ca0af;
+  border-radius: 50%;
+
+  aspect-ratio: 1/1;
+  color: white;
+}
+
+.page-item {
+  width: 40px;
+  height: 40px;
+}
+
+.page-item a {
+  border: 2px solid #e5e1da;
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

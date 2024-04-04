@@ -3,12 +3,13 @@
 import AsyncSelect from "react-select/async";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import options from "../optionData";
 
 const filterOptions = [
-  { name: "State", options: "" },
-  { name: "District", options: "" },
-  { name: "Category", options: "" },
-  { name: "Department", options: "" },
+  { name: "State", options: options.state },
+  { name: "District", options: options.district },
+  { name: "Category", options: options.category },
+  { name: "Department", options: options.department },
 ];
 
 const Sidebar = () => {
@@ -42,10 +43,12 @@ const Sidebar = () => {
         </div>
 
         <div className="xl:py-4 py-1 flex items-center gap-4">
-          <Button variant={"outline"} className="font-bold">
+          <Button variant={"outline"} className="font-bold ">
             Reset
           </Button>
-          <Button className="font-bold">Filter</Button>
+          <Button className="font-bold bg-[#e5e1da] text-[#474541]">
+            Filter
+          </Button>
         </div>
       </div>
     </div>
