@@ -1,6 +1,6 @@
 import MainTable from "./components/MainTable";
 import Sidebar from "./components/Sidebar";
-import data from "../../../../etender_20240403063512.json";
+import data from "../../../public/tenders.json";
 
 const Tenders = () => {
   return (

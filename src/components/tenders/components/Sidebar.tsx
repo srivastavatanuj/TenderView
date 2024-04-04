@@ -1,6 +1,7 @@
 "use client";
 
 import AsyncSelect from "react-select/async";
+import Select from "react-select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import options from "../optionData";
