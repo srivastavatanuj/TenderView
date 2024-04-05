@@ -19,7 +19,7 @@ const NavItems = () => {
           return (
             <span
               key={item.name}
-              className="lg:ml-6 ml-3 text-sm xl:text-lg"
+              className="lg:ml-6 ml-3 text-sm xl:text-lg cursor-pointer font-normal hover:text-[#3ca0af] duration-500"
               onClick={() => router.push(item.page)}
             >
               {item.name}
@@ -29,13 +29,13 @@ const NavItems = () => {
       </div>
       <div>
         <span
-          className="lg:ml-6 ml-3 text-sm xl:text-lg"
+          className="lg:ml-6 ml-3 text-sm xl:text-lg cursor-pointer font-normal hover:text-[#3ca0af] duration-500"
           onClick={() => router.push("/contact-us")}
         >
           Contact Us
         </span>
         <span
-          className="lg:ml-6 ml-3 text-sm xl:text-lg"
+          className="lg:ml-6 ml-3 text-sm xl:text-lg cursor-pointer font-normal hover:text-[#3ca0af] duration-500"
           onClick={() => router.push("/auth")}
         >
           Sign in

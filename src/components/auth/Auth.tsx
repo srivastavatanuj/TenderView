@@ -12,8 +12,11 @@ import { useState } from "react";
 const Auth = () => {
   const [registerAccount, setRegisterAccount] = useState(false);
   return (
-    <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
-      <div className="rounded-xl bg-white w-[450px] pb-12">
+    <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0 ">
+      <div
+        className="rounded-xl bg-white w-[450px] pb-12"
+        style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
+      >
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center text-center space-y-2">
             <Image

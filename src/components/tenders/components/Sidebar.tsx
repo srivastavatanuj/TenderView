@@ -13,13 +13,13 @@ const workOptions = [
 ];
 
 const Sidebar = ({ data, setFilteredData }: any) => {
-  const [location, setLocation] = useState({ State: "", District: "" });
+  const [state, setState] = useState("");
 
-  const locationOptions: { name: string; options: any }[] = [
+  const locationOptions: { name: string; options: string[] }[] = [
     { name: "State", options: options.state },
     {
       name: "District",
-      options: (options.district[0] as any)[location["State"]],
+      options: options.district[state as any],
     },
   ];
 
@@ -40,10 +40,7 @@ const Sidebar = ({ data, setFilteredData }: any) => {
                 name={filter.name}
                 options={filter.options}
                 onChange={(e: any) => {
-                  setLocation((prev) => ({
-                    ...prev,
-                    State: e.value,
-                  }));
+                  setState(e.value);
                 }}
               />
             </div>

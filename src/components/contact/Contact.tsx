@@ -16,7 +16,7 @@ const Contact = () => {
 
   return (
     <div className="container relative flex justify-center items-center pt-20 p-0 sm:container">
-      <div className="mx-auto flex flex-col border justify-center  rounded-xl md:flex-row w-full md:w-fit">
+      <div className="mx-auto flex flex-col border justify-center  rounded-xl md:flex-row w-full md:w-fit border-0 shadow-2xl">
         {/* section1 */}
         <div className="grid gap-4 p-10 w-full justify-center bg-white">
           <h1 className="text-3xl font-medium text-center md:text-start">
