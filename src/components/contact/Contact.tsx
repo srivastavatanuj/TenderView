@@ -15,7 +15,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="container relative flex justify-center items-center pt-20 p-0 sm:container">
+    <div className="container relative flex justify-center items-center pt-0 sm:pt-20 p-0 sm:container">
       <div className="mx-auto flex flex-col border justify-center  rounded-xl md:flex-row w-full md:w-fit border-0 shadow-2xl">
         {/* section1 */}
         <div className="grid gap-4 p-10 w-full justify-center bg-white">
@@ -41,9 +41,9 @@ const Contact = () => {
         </div>
 
         {/* section2 */}
-        <div className="grid gap-4 bg-[#3ca0af] p-10 rounded-br-lg rounded-tr-lg w-full md:w-fit">
+        <div className="grid gap-4 bg-[var(--theme-color-cream-light)] p-10 rounded-br-lg rounded-tr-lg w-full md:w-fit">
           <div className="grid gap-10 content-center">
-            <h3 className="text-xl font-medium text-white">Our Contacts</h3>
+            <h3 className="text-xl font-medium text-gray-600">Our Contacts</h3>
             {contacts.map((item) => {
               return (
                 <div className="flex gap-4">
@@ -54,7 +54,7 @@ const Contact = () => {
                   <div className="flex flex-col justify-center">
                     {item.entries.map((entry) => {
                       return (
-                        <p className="text-white font-medium text-sm">
+                        <p className="text-gray-600 font-medium text-sm">
                           {entry}
                         </p>
                       );

@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Search } from "lucide-react";
+import { Filter, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import ReactPaginate from "react-paginate";
@@ -9,10 +9,12 @@ import "./pagination.css";
 import { useState } from "react";
 import { json } from "stream/consumers";
 import { stringify } from "querystring";
+import Sidebar from "./Sidebar";
 
 const MainTable = ({ data }: any) => {
   const [page, setPage] = useState(0);
   const [afterSearchData, setAfterSearchData] = useState(data);
+  const [openFilter, setOpenFilter] = useState(false);
   const entryPerPage = 20;
 
   const handleSearch = () => {
@@ -35,76 +37,92 @@ const MainTable = ({ data }: any) => {
 
   return (
     <>
-      <h2 className="text-xl font-semibold font-mono py-1 xl:py-2 text-blue-800"></h2>
-      <div className="relative">
-        <Search className="absolute top-1/2 -translate-y-1/2 ml-3" />
+      <div className="relative mt-4 flex gap-2">
+        <div className="border p-2 rounded-lg bg-[var(--theme-color-green)] text-white md:hidden h-12 w-12 flex justify-center items-center">
+          <Filter
+            onClick={() => {
+              setOpenFilter(!openFilter);
+            }}
+          />
+          <div className="absolute top-12 left-0 bg-[var(--theme-color-green)]">
+            {openFilter && <Sidebar mobileView={true} />}
+          </div>
+        </div>
+
+        <Search className="absolute top-1/2 -translate-y-1/2 ml-3 hidden md:block" />
         <Button
-          className="absolute right-0 rounded-l-none bg-[#3ca0af] hover:bg-[#2c94a3]"
+          className="absolute right-0 rounded-l-none bg-[#3ca0af] hover:bg-[#2c94a3] h-full md:w-32 font-semibold"
           onClick={handleSearch}
         >
           Search
         </Button>
         <Input
-          className="indent-10"
+          className="md:indent-10 h-12 md:h-16 focus-visible:ring-offset-0"
           placeholder="Tender Search"
           id="searchInput"
         />
       </div>
+
       <div className="pt-5">
-        <table className="table-auto w-full border-b-4">
-          <thead className="bg-[#3ca0af] h-12">
-            <tr className="">
-              <th className="bg-white"></th>
-              <th className="border-r-2">Tender ID</th>
-              <th className="border-r-2">Description</th>
-              <th className="border-r-2">Department</th>
-              <th className="border-r-2">Value (₹)</th>
-              <th className="border-r-2">
-                <span className="flex gap-1 justify-center items-center">
-                  Location
-                  <MapPin size={"12"} />
-                </span>
-              </th>
-              <th>Close Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {afterSearchData
-              .slice(page * entryPerPage, page * entryPerPage + entryPerPage)
-              .map((entry: any, index: any) => {
-                const tender_id = entry.title
-                  .split("[")[3]
-                  .replace("]", "")
-                  .toLowerCase();
-                return (
-                  <tr key={index} className="my-7 align-top border-b">
-                    <td className="pr-1 text-sm text-gray-500">
-                      {entryPerPage * page + index + 1}
-                    </td>
-                    <td className="">{tender_id}</td>
-                    <td className="px-2 text-blue-800 text-justify">
+        {afterSearchData
+          .slice(page * entryPerPage, page * entryPerPage + entryPerPage)
+          .map((entry: any, index: any) => {
+            const tender_id = entry.title
+              .split("[")[3]
+              .replace("]", "")
+              .toLowerCase();
+            return (
+              <>
+                <div className="rounded-lg p-5 mb-2 bg-white flex flex-col gap-1.5">
+                  <div className="flex gap-2">
+                    <div>
+                      <span className="font-bold text-sm">
+                        {entryPerPage * page + index + 1}
+                      </span>
+                    </div>
+
+                    <div className="font-medium text-lg hover:text-[#225e66] cursor-pointer sm:w-[75%]">
                       <Link href={entry.url} target="_blank">
                         {entry.description}
                       </Link>
-                    </td>
-                    {/* <td>{tender_id.split("_")[1]}</td> */}
-                    <td className="w-[8%] min-w-20 text-center px-2">
-                      {entry.organisation_chain.split("|")[0]}
-                    </td>
-                    <td className="w-[8%] min-w-20 text-center">
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-x-8">
+                    <span className="text-sm font-sans text-gray-600">
+                      <span className="mr-1 font-bold ">TID:</span>
+                      {tender_id}
+                    </span>
+                    <span className="text-sm text-gray-600">
+                      <span className="mr-1 font-bold font-sans ">Value:</span>₹
                       {entry.tender_value}
-                    </td>
-                    <td className="w-[8%] min-w-20 text-center">
-                      {entry.location.toLowerCase()}
-                    </td>{" "}
-                    <td className="w-[8%] min-w-20 text-center">
+                    </span>
+                    <span className="text-sm text-gray-600">
+                      <span className="mr-1 font-bold font-sans ">
+                        Close Date/Time:
+                      </span>
                       {entry.close_date}
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-x-8">
+                    <div className="text-sm">
+                      <span className="font-bold font-sans text-gray-600">
+                        Organization:
+                      </span>
+                      {entry.organisation_chain.split("|")[0]}
+                    </div>
+                    <div className=" text-sm">
+                      <span className="mr-1 font-bold font-sans text-gray-600">
+                        Location:
+                      </span>
+                      {entry.location.toLowerCase()}
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          })}
         <div className="my-2 flex justify-center">
           <ReactPaginate
             containerClassName={"pagination"}
@@ -117,12 +135,12 @@ const MainTable = ({ data }: any) => {
             marginPagesDisplayed={1}
             previousLabel={
               <>
-                <h4 className="font-black text-lg text-gray-600">{"<"}</h4>
+                <ChevronLeft />
               </>
             }
             nextLabel={
               <>
-                <h4 className="font-black text-lg text-gray-600">{">"}</h4>
+                <ChevronRight />
               </>
             }
           />

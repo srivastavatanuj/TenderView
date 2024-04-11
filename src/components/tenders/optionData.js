@@ -3191,8 +3191,24 @@ const data = {
   ],
 };
 
+const categoryList = [
+  "Construction",
+  "Electrical",
+  "Transportation",
+  "Mechanical",
+  "Food",
+  "Medical",
+  "Water",
+  "Suppy & Services",
+  "IT",
+];
+
+const departmentList = [""];
+
 const state = [];
 var district = [];
+var category = [];
+var department = [];
 
 for (let i = 1; i < Object.keys(data).length; i++) {
   state.push({ label: Object.keys(data)[i], value: Object.keys(data)[i] });
@@ -3200,9 +3216,14 @@ for (let i = 1; i < Object.keys(data).length; i++) {
 }
 
 district = data;
-const category = [];
 
-const department = [{ state: "state-026", department: {} }];
+for (let i = 0; i < categoryList.length; i++) {
+  category.push({ label: categoryList[i], value: categoryList[i] });
+}
+
+for (let i = 0; i < departmentList.length; i++) {
+  department.push({ label: departmentList[i], value: departmentList[i] });
+}
 
 export default { state, district, department, category };
 

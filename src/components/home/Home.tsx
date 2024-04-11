@@ -30,18 +30,21 @@ export default function Home() {
       <MaxWidthWrapper>
         <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl ">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            All Yours <span className="text-blue-600 textColor">Tenders</span>{" "}
-            in One Place.
+            All Yours{" "}
+            <span className="text-[var(--theme-color-cream)]">Tenders</span> in
+            One Place.
           </h1>
-          <p className="mt-6 text-lg max-w-prose text-[#194248]">
+          <p className="mt-6 md:text-lg max-w-prose text-[#194248] text-sm">
             Welcome to TenderView. We are making your experience more seamless
             and simplifying your procurement process.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link href="/products" className={buttonVariants()}>
+            <Link href="/tenders" className={buttonVariants()}>
               Browse Tenders
             </Link>
-            <Button variant="ghost">Request a Demo &rarr;</Button>
+            <Link href="/demo" className={buttonVariants({ variant: "ghost" })}>
+              Request a Demo &rarr;
+            </Link>
           </div>
         </div>
       </MaxWidthWrapper>
@@ -55,7 +58,7 @@ export default function Home() {
                 className="text-center md:flex md:items-center md:text-left lg:block lg:text-center"
               >
                 <div className="md:flex-shrink-0 flex justify-center">
-                  <div className="h-16 w-16 flex items-center justify-center rounded-full bg-[#3ca0af] text-white">
+                  <div className="h-16 w-16 flex items-center justify-center rounded-full bg-[var(--theme-color-cream-light)] text-gray-600 ">
                     {<perk.Icon className="w-1/3 h-1/3" />}
                   </div>
                 </div>

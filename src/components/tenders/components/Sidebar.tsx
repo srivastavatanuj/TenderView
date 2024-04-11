@@ -8,11 +8,11 @@ import options from "../optionData";
 import { useState } from "react";
 
 const workOptions = [
-  { name: "Category", options: options.category },
   { name: "Department", options: options.department },
+  { name: "Category", options: options.category },
 ];
 
-const Sidebar = ({ data, setFilteredData }: any) => {
+const Sidebar = ({ data, setFilteredData, mobileView }: any) => {
   const [state, setState] = useState("");
 
   const locationOptions: { name: string; options: string[] }[] = [
@@ -24,21 +24,22 @@ const Sidebar = ({ data, setFilteredData }: any) => {
   ];
 
   return (
-    <div className="min-w-[250px] fixed ">
-      <h3 className="text-xl xl:text-3xl font-medium font-sans py-3 px-4 xl:p-4  text-white">
-        <p className="border-b pb-4"> Filters</p>
+    <div className={`min-w-[250px] ${mobileView ? "" : "fixed"}`}>
+      <h3 className="text-xl xl:text-3xl font-medium font-sans pt-9 px-4 xl:pt-9 hidden md:block">
+        <p className="border-b pb-3 text-gray-700"> Filters</p>
       </h3>
 
       <div className="px-4 py-1 xl:py-4">
         {locationOptions.map((filter) => {
           return (
-            <div className="py-2 xl:py-4 w-[218px]" key={filter.name}>
-              <p className="xl:text-lg text-sm font-semibold font-mono text-white">
-                {filter.name}
+            <div className="xl:pb-3 w-[218px]" key={filter.name}>
+              <p className="xl:text-sm text-sm font-medium  ">
+                {filter.name.toUpperCase()}
               </p>
               <Select
                 name={filter.name}
                 options={filter.options}
+                menuPosition="fixed"
                 onChange={(e: any) => {
                   setState(e.value);
                 }}
@@ -49,28 +50,29 @@ const Sidebar = ({ data, setFilteredData }: any) => {
 
         {workOptions.map((filter) => {
           return (
-            <div className="py-2 xl:py-4 w-[218px]" key={filter.name}>
-              <p className="xl:text-lg text-sm font-semibold font-mono text-white">
-                {filter.name}
+            <div className="xl:pb-3 w-[218px]" key={filter.name}>
+              <p className="xl:text-sm text-sm font-medium  ">
+                {" "}
+                {filter.name.toUpperCase()}
               </p>
-              <Select name={filter.name} options={filter.options} />
+              <Select
+                name={filter.name}
+                menuPosition="fixed"
+                options={filter.options}
+              />
             </div>
           );
         })}
-        <div className="xl:py-4 py-2 flex items-center gap-2">
+        <div className="xl:pb-3 flex items-center gap-2">
           <Checkbox className=" bg-white" />
-          <p className="font-normal text-sm xl:text-lg  text-white">
-            Corrigendum Only
-          </p>
+          <p className="font-normal text-sm">Corrigendum Only</p>
         </div>
 
         <div className="xl:py-4 py-1 flex items-center gap-4">
-          <Button variant={"outline"} className="font-bold ">
+          <Button variant={"ghost"} className="font-bold ">
             Reset
           </Button>
-          <Button className="font-bold bg-[#e5e1da] text-[#474541]">
-            Filter
-          </Button>
+          <Button className="font-bold bg-[#3ca0af] text-white">Filter</Button>
         </div>
       </div>
     </div>

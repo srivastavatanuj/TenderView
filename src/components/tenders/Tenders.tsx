@@ -9,10 +9,10 @@ const Tenders = () => {
   const [filteredData, setFilteredData] = useState(data);
   return (
     <div className="flex">
-      <div className="bg-[#3ca0af] min-h-screen relative min-w-[250px] h-auto hidden md:block">
+      <div className="bg-white border-r min-h-screen relative min-w-[250px] h-auto hidden md:block">
         <Sidebar data={data} setFilteredData={setFilteredData} />
       </div>
-      <div className="w-full px-2 md:px-4 bg-white">
+      <div className="w-full px-2 md:px-4 bg-[#f1f2f4]">
         <MainTable data={data} />
       </div>
     </div>
